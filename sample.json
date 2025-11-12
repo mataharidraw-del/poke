@@ -1,0 +1,51 @@
+{
+  "attacker": {
+    "name": "메가리자몽X",
+    "level": 50,
+    "types": [
+      "Fire",
+      "Dragon"
+    ],
+    "stats": {
+      "hp": 153,
+      "atk": 200,
+      "def": 132,
+      "spa": 130,
+      "spd": 105,
+      "spe": 167
+    }
+  },
+  "defender": {
+    "name": "몰드류",
+    "level": 50,
+    "types": [
+      "Ground",
+      "Steel"
+    ],
+    "stats": {
+      "hp": 185,
+      "atk": 187,
+      "def": 80,
+      "spa": 85,
+      "spd": 85,
+      "spe": 154
+    }
+  },
+  "move": {
+    "name": "인파이트",
+    "power": 120,
+    "category": "Physical",
+    "type": "Fighting",
+    "isCrit": false,
+    "stab": true
+  },
+  "field": {
+    "weather": "None",
+    "reflect": false,
+    "lightscreen": false,
+    "burn": false,
+    "atkMod": 1.0,
+    "defMod": 1.0,
+    "otherMod": 1.0
+  }
+}
