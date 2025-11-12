@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PokéBattle KR · Lite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title" style="margin-bottom:8px">PokéBattle KR · Lite</div>
+
+    <div class="panel">
+      <div class="title" style="font-size:16px">① 엔트리 입력</div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="k">공격</div>
+          <div class="row" style="margin-top:6px">
+            <div style="grid-column:span 3">
+              <label>포켓몬 검색(영문 추천)</label>
+              <input id="atkSearch" class="input" placeholder="예: charizard / 리자몽" list="pokeList">
+            </div>
+            <div><label>레벨</label><input id="atkLevel" class="input" type="number" value="50"></div>
+            <div style="grid-column:span 2"><label>이름</label><input id="atkName" class="input" placeholder="자동/수정가능"></div>
+          </div>
+          <div class="row">
+            <div><label>타입1</label><input id="atkType1" class="input" placeholder="자동"></div>
+            <div><label>타입2</label><input id="atkType2" class="input" placeholder="없으면 비움"></div>
+            <div><label>HP</label><input id="atkHP" class="input" type="number" value="150"></div>
+            <div><label>공/특공</label><input id="atkA" class="input" type="number" value="200"></div>
+            <div><label>방/특방</label><input id="atkB" class="input" type="number" value="120"></div>
+            <div><label>추가배수</label><input id="atkMod" class="input" type="number" step="0.01" value="1.0"></div>
+          </div>
+          <div class="row">
+            <div><label>화상</label><select id="atkBurn" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>근성</label><select id="atkGuts" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>자속</label><select id="atkStab" class="input"><option>자동</option><option>끄기</option></select></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="k">수비</div>
+          <div class="row" style="margin-top:6px">
+            <div style="grid-column:span 3">
+              <label>포켓몬 검색(영문 추천)</label>
+              <input id="defSearch" class="input" placeholder="예: garchomp / 한카리아스" list="pokeList">
+            </div>
+            <div><label>레벨</label><input id="defLevel" class="input" type="number" value="50"></div>
+            <div style="grid-column:span 2"><label>이름</label><input id="defName" class="input" placeholder="자동/수정가능"></div>
+          </div>
+          <div class="row">
+            <div><label>타입1</label><input id="defType1" class="input" placeholder="자동"></div>
+            <div><label>타입2</label><input id="defType2" class="input" placeholder="없으면 비움"></div>
+            <div><label>HP</label><input id="defHP" class="input" type="number" value="180"></div>
+            <div><label>공/특공</label><input id="defA" class="input" type="number" value="120"></div>
+            <div><label>방/특방</label><input id="defB" class="input" type="number" value="120"></div>
+            <div><label>추가배수</label><input id="defMod" class="input" type="number" step="0.01" value="1.0"></div>
+          </div>
+          <div class="row">
+            <div><label>리플렉터</label><select id="reflect" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>빛의장막</label><select id="lightscreen" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>더블</label><select id="isDouble" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>잔식 회복량</label><input id="leftovers" class="input" type="number" value="0"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <button id="btnSwap" class="btn">좌/우 스왑</button>
+    </div>
+
+    <div class="panel">
+      <div class="title" style="font-size:16px">② 기술 지시 → 계산</div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="row">
+            <div style="grid-column:span 3">
+              <label>기술명</label>
+              <input id="moveName" class="input" placeholder="예: 인파이트 / close-combat" list="moveList">
+            </div>
+            <div><label>타입</label><input id="moveType" class="input" placeholder="자동(기술 선택 시)"></div>
+            <div><label>분류</label><select id="moveCat" class="input"><option>물리</option><option>특수</option></select></div>
+            <div><label>위력</label><input id="movePower" class="input" type="number" value="120"></div>
+          </div>
+          <div class="row">
+            <div><label>급소</label><select id="isCrit" class="input"><option>아니오</option><option>예</option></select></div>
+            <div><label>날씨</label><select id="weather" class="input"><option>없음</option><option>쾌청</option><option>비</option></select></div>
+            <div><label>추가배수(기술)</label><input id="moveMod" class="input" type="number" step="0.01" value="1.0"></div>
+          </div>
+          <div class="note">기술명을 선택하면 타입·분류·위력이 자동 채워집니다. 값이 모두 준비되면 자동 계산됩니다.</div>
+          <button id="btnCalc" class="btn">계산 & 로그</button>
+          <div class="hr"></div>
+          <div class="badge">현재 상성: <span id="effNow">-</span></div>
+        </div>
+
+        <div class="card">
+          <div class="flex" style="gap:6px;margin-bottom:6px">
+            <div class="k">범위 <span id="outRange">-</span></div>
+            <div class="k">OHKO <span id="outOHKO">-</span></div>
+            <div class="k">2HKO <span id="out2HKO">-</span></div>
+          </div>
+          <div id="outLog" class="log">-</div>
+        </div>
+
+        <div class="card">
+          <div class="title" style="font-size:14px;margin-bottom:6px">히스토리</div>
+          <div id="hist" class="log"></div>
+          <div class="hr"></div>
+          <div class="flex"><button id="btnClear" class="btn">비우기</button></div>
+        </div>
+      </div>
+    </div>
+
+    <datalist id="pokeList"></datalist>
+    <datalist id="moveList"></datalist>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
